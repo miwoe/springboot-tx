@@ -1,0 +1,17 @@
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springboot-tx
+    driverClassName: org.postgresql.Driver
+    username: woapp
+    password: test
+flyway:
+  enabled: false
+logging:
+  level:
+    root: warn
+    de.miwoe: debug
+    org.springframework.transaction.interceptor: TRACE
