@@ -1,5 +1,6 @@
 package de.miwoe.service;
 
+import de.miwoe.model.Item;
 import de.miwoe.model.MyEntity;
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -48,11 +50,30 @@ public class EntityServiceTest {
     }
 
     private MyEntity getMyEntity() {
-        return MyEntity.builder()
+        MyEntity myEntity = MyEntity.builder()
                 .id(UUID.randomUUID())
                 .name(dataFactory.getRandomText(10))
+                .itemSet(new ArrayList<>())
                 .build();
+        Item itemOne = Item.builder()
+                .id(UUID.randomUUID())
+                .name(dataFactory.getRandomText(10))
+                .myEntity(myEntity)
+                .build();
+        Item itemTwo = Item.builder()
+                .id(UUID.randomUUID())
+                .name(dataFactory.getRandomText(10))
+                .myEntity(myEntity)
+                .build();
+        myEntity.getItemSet().add(itemOne);
+        myEntity.getItemSet().add(itemTwo);
+
+        return myEntity;
     }
 
 
+    @Test
+    public void testLazyExcetion() {
+        entityService.getAllEntities();
+    }
 }

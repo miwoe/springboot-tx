@@ -6,8 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,6 +28,9 @@ public class MyEntity {
     UUID id;
 
     private String name;
+
+    @OneToMany(mappedBy = "myEntity", cascade = CascadeType.ALL)
+    private List<Item> itemSet = new ArrayList<>();
 
     private String someValue;
 
