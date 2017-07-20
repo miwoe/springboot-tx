@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableTransactionManagement
 public class SpringbootTxApplication {
 
 	@Bean
