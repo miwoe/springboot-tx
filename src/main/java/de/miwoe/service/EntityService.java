@@ -81,7 +81,9 @@ public class EntityService {
 
     @Transactional
     public void getAllEntities() {
+        log.debug("getAllEntities start");
         List<MyEntity> myEntities = myEntityRepository.findAll();
         myEntities.forEach(entity -> entity.getItemSet().forEach(item -> System.out.println(item.getName())));
+        log.debug("getAllEntities end");
     }
 }
