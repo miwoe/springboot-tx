@@ -16,7 +16,9 @@ public class SomeController {
     @Autowired
     EntityService entityService;
 
-    public void add(MyEntity entity) {
-
+    @RequestMapping(value = "/get")
+    public String get() {
+        entityService.getAllEntities();
+        return "foo";
     }
 }
